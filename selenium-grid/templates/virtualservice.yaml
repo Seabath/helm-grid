@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ .Release.Name }}-vs
+  namespace: {{ .Release.Namespace }}
+spec:
+  hosts:
+    - grid-android{{ .Values.GridAndroid.VirtualService.Host }}
+  gateways:
+    - {{ .Values.GridAndroid.VirtualService.Gateway }}
+  http:
+    - route:
+        - destination:
+            host: {{ template "selenium.hub" . }}.{{ .Release.Namespace }}.svc{{ .Values.Cluster.dns_suffix }}
+            port:
+              number: 4444

@@ -1,0 +1,9 @@
+apiVersion: v2
+name: emulator-android
+description: A Helm chart android devices with appium server and vnc running.
+
+type: application
+
+version: 0.1.0
+
+appVersion: 1.16.0

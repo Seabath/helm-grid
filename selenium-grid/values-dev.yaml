@@ -1,0 +1,8 @@
+GridAndroid:
+  VirtualService:
+    Gateway: default/gateway
+    Host: .preview-kube.deez.re
+
+
+Cluster:
+  dns_suffix: .dev.kubernetes

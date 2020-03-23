@@ -1,0 +1,15 @@
+apiVersion: v2
+name: selenium-grid
+description: A Helm chart for Selenium grid with multiple android devices.
+
+type: application
+
+version: 0.1.0
+
+appVersion: 1.16.0
+
+
+dependencies:
+  - name: selenium
+    version: 1.0.10
+    repository: https://kubernetes-charts.storage.googleapis.com/

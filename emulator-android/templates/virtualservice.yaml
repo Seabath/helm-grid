@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ .Release.Name }}-vs
+  namespace: {{ .Release.Namespace }}
+spec:
+  hosts:
+    - emulator.android.{{ .Release.Name }}{{ .Values.GridAndroid.VirtualService.Host }}
+  gateways:
+    - {{ .Values.GridAndroid.VirtualService.Gateway }}
+  http:
+    - route:
+        - destination:
+            host: {{ template "multi-android-chart.fullname" . }}-device
+            port:
+              number: 6080
