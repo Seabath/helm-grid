@@ -1,8 +1,0 @@
-GridAndroid:
-  VirtualService:
-    Gateway: gateway
-    Host: .deez.re
-
-
-Cluster:
-  dns_suffix: .kubernetes
