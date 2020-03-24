@@ -5,9 +5,9 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   hosts:
-    - grid-android{{ .Values.GridAndroid.VirtualService.Host }}
+    - grid-android{{ .Values.SeleniumGrid.VirtualService.Host }}
   gateways:
-    - {{ .Values.GridAndroid.VirtualService.Gateway }}
+    - {{ .Values.SeleniumGrid.VirtualService.Gateway }}
   http:
     - route:
         - destination:

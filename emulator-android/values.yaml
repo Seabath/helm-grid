@@ -1,4 +1,4 @@
-GridAndroid:
+SeleniumGrid:
   VirtualService:
     Gateway: default/gateway
     Host: .preview-kube.deez.re

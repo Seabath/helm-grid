@@ -5,12 +5,12 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   hosts:
-    - emulator.android.{{ .Release.Name }}{{ .Values.GridAndroid.VirtualService.Host }}
+    - emulator.android.{{ .Release.Name }}{{ .Values.SeleniumGrid.VirtualService.Host }}
   gateways:
-    - {{ .Values.GridAndroid.VirtualService.Gateway }}
+    - {{ .Values.SeleniumGrid.VirtualService.Gateway }}
   http:
     - route:
         - destination:
-            host: {{ template "multi-android-chart.fullname" . }}-device
+            host: {{ template "emulator-android-chart.fullname" . }}-device
             port:
               number: 6080

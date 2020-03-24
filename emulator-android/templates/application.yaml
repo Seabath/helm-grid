@@ -1,15 +1,15 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: {{ template "multi-android-chart.fullname" . }}-deployment
+  name: {{ template "emulator-android-chart.fullname" . }}-deployment
 spec:
   selector:
     matchLabels:
-      app: {{ template "multi-android-chart.fullname" . }}-device
+      app: {{ template "emulator-android-chart.fullname" . }}-device
   template:
     metadata:
       labels:
-        app: {{ template "multi-android-chart.fullname" . }}-device
+        app: {{ template "emulator-android-chart.fullname" . }}-device
     spec:
       volumes:
           - name: kvm
@@ -34,7 +34,7 @@ spec:
             - name: RELAXED_SECURITY
               value: "true"
             - name: SELENIUM_HOST
-              value: {{ template "selenium.hub" . }}
+              value: {{ .Values.SeleniumGrid.SeleniumHub.Name }}-selenium-hub.{{ .Release.Namespace }}.svc.{{ .Values.Cluster.dns_suffix }}
           volumeMounts:
               - name: kvm
                 mountPath: "/dev/kvm"
@@ -44,11 +44,11 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: {{ template "multi-android-chart.fullname" . }}-device
+  name: {{ template "emulator-android-chart.fullname" . }}-service
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
-    app: {{ template "multi-android-chart.fullname" . }}-device
+    app: {{ template "emulator-android-chart.fullname" . }}-device
   ports:
     - port: 6080
       targetPort: 6080
