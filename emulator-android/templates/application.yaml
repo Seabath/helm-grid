@@ -49,6 +49,13 @@ spec:
           volumeMounts:
               - name: kvm
                 mountPath: "/dev/kvm"
+          resources:
+            requests:
+              memory: "3Gi"
+              cpu: "2"
+            limits:
+              memory: "7Gi"
+              cpu: "2"
 
 
 ---
