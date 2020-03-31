@@ -10,11 +10,22 @@ spec:
     metadata:
       labels:
         app: {{ template "emulator-android-chart.fullname" . }}-device
+        affinity-key: emulator-device
     spec:
       volumes:
-          - name: kvm
-            hostPath:
-              path: /dev/kvm
+        - name: kvm
+          hostPath:
+            path: /dev/kvm
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: affinity-key
+                    operator: In
+                    values:
+                      - emulator-device
+              topologyKey: "kubernetes.io/hostname"
       containers:
         - name: device
           image: budtmo/docker-android-x86-8.1
@@ -38,6 +49,7 @@ spec:
           volumeMounts:
               - name: kvm
                 mountPath: "/dev/kvm"
+
 
 ---
 
